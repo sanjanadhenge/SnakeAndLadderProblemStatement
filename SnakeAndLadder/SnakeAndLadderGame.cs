@@ -10,7 +10,7 @@ namespace SnakeAndLadder
 
     {
         int playerPosition = 0;
-        const int No_Play=0,Ladder=1, Snake = 2;
+        const int No_Play=0,Ladder=1, Snake = 2, Winning_Position=100;
         Random random = new Random();
         public int RollingDie()
         {
@@ -40,11 +40,14 @@ namespace SnakeAndLadder
                             this.playerPosition -= RollingDie();
                             break;
                     }
+
                 }
-                Console.WriteLine("Player Position ==> " + playerPosition);
             }
-            Console.WriteLine("Winning Position ==> " + playerPosition);
-            
+            if (this.playerPosition == Winning_Position)
+            {
+                Console.WriteLine("Player Position : " + playerPosition);
+            }
+
         }
 
     }

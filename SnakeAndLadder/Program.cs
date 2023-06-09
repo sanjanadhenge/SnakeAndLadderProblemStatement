@@ -13,7 +13,7 @@ namespace SnakeAndLadder
         {
             Console.WriteLine("Welcome To SnakeLadder");
             SnakeAndLadderGame game = new SnakeAndLadderGame();
-            game.RollingDie();
+            game.ComputeGame();
         }
 
     }

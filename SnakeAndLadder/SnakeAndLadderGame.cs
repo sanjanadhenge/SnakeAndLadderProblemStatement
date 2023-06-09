@@ -9,12 +9,13 @@ namespace SnakeAndLadder
     internal class SnakeAndLadderGame
 
     {
-        int playerPosition = 0;
+        int playerPosition = 0,count=0;
         const int No_Play=0,Ladder=1, Snake = 2, Winning_Position=100;
         Random random = new Random();
         public int RollingDie()
         {
             int dieNum = random.Next(1, 7);
+            count++;
             return dieNum;
            
         }
@@ -32,20 +33,30 @@ namespace SnakeAndLadder
                     switch (option)
                     {
                         case No_Play:
+                            Console.WriteLine("Player Position =>" + playerPosition);
                             break;
                         case Ladder:
-                            this.playerPosition += RollingDie();
+                            int die=RollingDie();
+                            playerPosition =playerPosition +die;
+                            if(playerPosition>100)
+                            {
+                                playerPosition= playerPosition-die;
+                            }
+                            Console.WriteLine("Player Position =>" + playerPosition);
                             break;
                         case Snake:
-                            this.playerPosition -= RollingDie();
+                            playerPosition -= RollingDie();
+                            Console.WriteLine("Player Position =>" + playerPosition);
                             break;
                     }
 
                 }
+              
             }
             if (this.playerPosition == Winning_Position)
             {
                 Console.WriteLine("Player Position : " + playerPosition);
+                Console.WriteLine("Die count => " + count);
             }
 
         }

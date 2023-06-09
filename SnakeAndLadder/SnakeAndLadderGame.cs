@@ -19,11 +19,43 @@ namespace SnakeAndLadder
             return dieNum;
            
         }
-        public void ComputeGame()
+        public void GameBetweenTwoPlayer()
         {
-            while(playerPosition<100)
+            bool flag = true;
+            int pos = 0;
+            while(flag && pos<100)
             {
-                if(playerPosition<0)
+                Console.WriteLine("1. 1st player  2. 2nd player");
+                int Num = Convert.ToInt32(Console.ReadLine());
+
+                switch(Num)
+                {
+                    case 1:
+                       pos = ComputeGame();
+                        if(pos == 100)
+                        {
+                            Console.WriteLine("Player 1 is won");
+                            flag = false;
+                        }
+                        break;
+                    case 2:
+                       pos= ComputeGame();
+                        if (pos == 100)
+                        {
+                            Console.WriteLine("Player 2 is won");
+                            flag = false;
+                        }
+                        break;
+                    default:
+                        flag = false;
+                        break;
+                }
+            }
+        }
+        public int ComputeGame()
+        {
+           
+                if (playerPosition < 0)
                 {
                     playerPosition = 0;
                 }
@@ -36,13 +68,17 @@ namespace SnakeAndLadder
                             Console.WriteLine("Player Position =>" + playerPosition);
                             break;
                         case Ladder:
-                            int die=RollingDie();
-                            playerPosition =playerPosition +die;
-                            if(playerPosition>100)
+                           for(int i=0;i<2;i++)
+                           {
+                            int die = RollingDie();
+                            playerPosition = playerPosition + die;
+                            if (playerPosition > 100)
                             {
-                                playerPosition= playerPosition-die;
+                                playerPosition = playerPosition - die;
                             }
                             Console.WriteLine("Player Position =>" + playerPosition);
+                           }
+                            
                             break;
                         case Snake:
                             playerPosition -= RollingDie();
@@ -51,15 +87,11 @@ namespace SnakeAndLadder
                     }
 
                 }
-              
+            return playerPosition;
             }
-            if (this.playerPosition == Winning_Position)
-            {
-                Console.WriteLine("Player Position : " + playerPosition);
-                Console.WriteLine("Die count => " + count);
-            }
+   
 
-        }
+        
 
     }
 }
